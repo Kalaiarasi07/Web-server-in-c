@@ -22,7 +22,6 @@ off_t filesize(int fdfile)
 	return size;
 }
 
-//TODO: add comments
 //parses http request and sends response
 void handleRequest(int fdClient, char buf[])
 {
