@@ -124,11 +124,11 @@ int main()
     "Content-Disposition: form-data; name=\"fileToUpload\"; filename=\"temp.txt\"\r\n"
     "Content-Type: text/plain\r\n"
     "\r\n"
-    "Hello this is Kalai\r\n"
+    "This is the first line\r\n"
     "ddfffffffff \r\n"
-    "Hello this is Kalai\r\n"
-    "Hello this is Kalai\r\n"
-    "the end\r\n"
+    "sample text  goes here\r\n"
+    "sample text  goes here\r\n"
+    "the end:)\r\n"
     "\r\n"
     "-----------------------------16596797181037153033630983533\r\n";
 
