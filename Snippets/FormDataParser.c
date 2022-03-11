@@ -1,9 +1,11 @@
 #include<stdio.h>
 #include<string.h>
 #include<stdlib.h>
-// takes a pointer to a string and a line array to store nextline and returns pointer to remaining string
+ /*function to get a line from a string */
 char *get_nextline(char *bufp,char line[])
 {
+    /* Desc: takes a pointer to a string and a line array to store nextline and returns pointer to remaining string */
+
     memset(line, 0, strlen(line));
     int i=0;
     while(*bufp != '\n' && *bufp!='\0')
@@ -22,10 +24,10 @@ char *get_nextline(char *bufp,char line[])
     
     
 }
-//function to parse key-value items from form data
+/* function to parse key-value items from form data */
 void data_parser(char item[])
 {
-    // printf("data parser: \n%s",item);
+    
     char find[] = "name=\"";
     char *keyvalue = strstr(item,find);
     keyvalue += strlen(find);
@@ -48,12 +50,12 @@ void data_parser(char item[])
         keyvalue++;
     }
     value[i] = '\0';
-    printf("\nvalue:%s",value);
+    printf("\nvalue:%s\n",value);
 }
-//function to parse file data 
+/* function to parse file data */
 void file_parser(char item[])
 {
-    // printf("file parser: %s",item);
+    
     char find[] = "filename=\"";
     char *keyvalue = strstr(item,find);
     keyvalue += strlen(find);
@@ -68,7 +70,7 @@ void file_parser(char item[])
 
     keyvalue++;
 
-    //writing to file
+    /* writing to file */
 
     FILE *fptr;
     fptr = fopen(fname, "w");
@@ -83,22 +85,25 @@ void file_parser(char item[])
         keyvalue++;
     }
     
-    printf("\nfile successfully written");
+    printf("\nFile successfully written\n");
 
 
 }
-void extract_data(char item[])
+void parse_data(char item[])
 {
     // static int i = 1;
     // printf("item%d:\n%s\n",i++,item);
-    char item1[strlen(item)];
+
+    char item1[strlen(item)]; 
     strcpy(item1,item);
 
     char *firstLine;
     firstLine = strtok(item1,"\r\n");
     // printf("firstline: %s\n",firstLine);
 
-    if (strstr(firstLine,"filename") != NULL)
+     /* find if it is a file item */
+
+    if (strstr(firstLine,"filename") != NULL) 
     {
         file_parser(item);
        
@@ -111,8 +116,8 @@ void extract_data(char item[])
 }
 int main()
 {
+     /* body of request to be parsed */
     char buf[] = 
-    // "-----------------------------16596797181037153033630983533\r\n"
     "Content-Disposition: form-data; name=\"fname\"\r\n"
     "\r\n"
     "Kaz\r\n"
@@ -135,7 +140,7 @@ int main()
     // printf("%s",buf);
     char boundary[] = "-----------------------------16596797181037153033630983533\r\n";
 
-    char item[1000];
+    char item[1000];  /* one data item between boundaries */
     memset(item, 0, strlen(item));
     
     char *bufp = buf;
@@ -143,15 +148,13 @@ int main()
     while( bufp = get_nextline(bufp,line))
     {
         // printf("%s",line);
-        if(strcmp(line,boundary) != 0)
+        if(strcmp(line,boundary) != 0) /* if not a boundary line, append to item */
         {
-            strcat(item,line);
-            
+            strcat(item,line);            
         }
-        else
+        else  /* if boundary line, send item for parsing */
         {
-
-            extract_data(item);
+            parse_data(item);
             memset(item, 0, strlen(item));
             
         }
