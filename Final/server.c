@@ -10,7 +10,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <sys/sendfile.h>
-#include "parser.h"
+#include "postparser1.h"
 #define FAILURE "HTTP/1.1 404 Not Found\r\nContent-Type: text/html; charset = UTF-8\r\n\r\n"
 #define SUCCESS "HTTP/1.1 200 OKr\nContent-Type: text/html; charset = UTF-8\r\n\r\n"
 
@@ -46,7 +46,7 @@ void handleRequest(int fdClient, char buf[])
             
             int fdfile =  open(token, O_RDONLY); //open file
 
-			printf("\n\n\nFndFILE: %d\n\n\n",fdfile);
+			// printf("\n\n\nFILE descriptor: %d\n\n\n",fdfile);
             if(fdfile == -1) //if file not found return 404 error
             {
                 write(fdClient,FAILURE, sizeof(FAILURE)-1); 
