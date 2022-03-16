@@ -130,8 +130,8 @@ int multiparttype_parser(char *bufp)
 
     bufp += 2;
 
- printf("bound:\n%s",boundary);
-//  printf("body to parse:\n%s",body);
+    printf("bound:\n%s",boundary);
+    //  printf("body to parse:\n%s",body);
 
     char item[1000];  /* one data item between boundaries */
     memset(item, 0, strlen(item));
@@ -143,7 +143,6 @@ int multiparttype_parser(char *bufp)
         // printf("%s",line);
         if(strcmp(line,boundary) != 0) /* if not a boundary line, append to item */
         {
-           
             strcat(item,line);            
         }
         else  /* if boundary line, send item for parsing */
