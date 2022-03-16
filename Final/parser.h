@@ -1,5 +1,13 @@
 int parse_status = 1;
 
+/*Function declarations*/
+char *get_nextline(char *,char []);
+void data_parser(char []);
+void file_parser(char []);
+void parse_data(char []);
+int multiparttype_parser(char *);
+int applicationtype_parser(char *);
+
  /*function to get a line from a string */
 char *get_nextline(char *bufp,char line[])
 {
@@ -130,7 +138,7 @@ int multiparttype_parser(char *bufp)
 
     bufp += 2;
 
-    printf("bound:\n%s",boundary);
+    // printf("bound:\n%s",boundary);
     //  printf("body to parse:\n%s",body);
 
     char item[1000];  /* one data item between boundaries */
