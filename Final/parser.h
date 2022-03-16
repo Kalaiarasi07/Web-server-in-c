@@ -1,4 +1,5 @@
 int parse_status = 1;
+
  /*function to get a line from a string */
 char *get_nextline(char *bufp,char line[])
 {
@@ -14,10 +15,10 @@ char *get_nextline(char *bufp,char line[])
     line[i++] = '\n';
     line[i] = '\0';
     
-   if(*bufp == '\0')
-   {
-       return NULL;
-   }
+    if(*bufp == '\0')
+    {
+        return NULL;
+    }
     return bufp+1;
     
     
