@@ -10,7 +10,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <sys/sendfile.h>
-#include "postparser1.h"
+#include "parser.h"
 #define FAILURE "HTTP/1.1 404 Not Found\r\nContent-Type: text/html; charset = UTF-8\r\n\r\n"
 #define SUCCESS "HTTP/1.1 200 OKr\nContent-Type: text/html; charset = UTF-8\r\n\r\n"
 
