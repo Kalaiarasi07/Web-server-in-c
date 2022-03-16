@@ -182,7 +182,7 @@ int main(int argc, char *argv[])
 		       	read(fdClient, buf, 2047); 
 			
 			printf("---------HTTP Request-------\n%s\n", buf);
-            handleRequest(fdClient,buf);
+            		handleRequest(fdClient,buf);
 
 			
 			close(fdClient);
